@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class productController extends Controller
@@ -23,7 +24,8 @@ class productController extends Controller
      */
     public function create()
     {
-        //
+        $prod = Product::all();
+        return view('productlist',['list'=>$prod]);
     }
 
     /**
@@ -68,7 +70,21 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'barcode'=>'required',
+            'product_name'=>'required',
+            'price'=>'required',
+            'stock'=>'requireds'
+        ]);
+        $prod = new Product();
+
+        $prod->barcode = $request->barcode;
+        $prod->product_name = $request->product_name;
+        $prod->price=$request->price;
+        $prod->stock = $request->stock;
+
+        $prod->save();
+
     }
 
     /**
@@ -79,6 +95,7 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prod = Product::find($id);
+        $prod->delete();
     }
 }

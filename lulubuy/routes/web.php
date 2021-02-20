@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/404', function () {
     return view('errors.404');
 });
+Route::put('/update/{id}', [productController::class, 'update']);
+Route::delete('/delete/{id}', [productController::class, 'destroy']);

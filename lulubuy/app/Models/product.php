@@ -9,4 +9,11 @@ class product extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = [
+        'barcode',
+        'product_name',
+        'price',
+        'stock'
+    ];
+
 }
