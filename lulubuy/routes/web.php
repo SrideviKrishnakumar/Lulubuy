@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,5 +21,15 @@ Route::get('/', function () {
 Route::get('/404', function () {
     return view('errors.404');
 });
-Route::put('/update/{id}', [productController::class, 'update']);
-Route::delete('/delete/{id}', [productController::class, 'destroy']);
+
+Route::get('/productlist',[productController::class,'index']);
+
+Route::get('/product/create',[productController::class,'create']);
+Route::post('/product',[productController::class,'store']);
+
+
+Route::get('/product/{id}/edit', [productController::class, 'edit'])->name('product.edit');
+Route::put('/product/{id}', [productController::class, 'update'])->name('product.update');
+
+
+Route::delete('product/delete/{id}', [productController::class, 'destroy']);

@@ -14,7 +14,8 @@ class productController extends Controller
      */
     public function index()
     {
-        //
+        $prod = Product::all();
+        return view('productlist',['list'=>$prod]);
     }
 
     /**
@@ -24,8 +25,7 @@ class productController extends Controller
      */
     public function create()
     {
-        $prod = Product::all();
-        return view('productlist',['list'=>$prod]);
+        return view('newproduct');
     }
 
     /**
@@ -58,7 +58,9 @@ class productController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prod = Product::find($id);
+
+        return view('product.edit-product', ['product' => $prod]);
     }
 
     /**
