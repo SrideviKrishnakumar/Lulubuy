@@ -8,7 +8,8 @@
 <form action="{{ route('product.update', [$product->id]) }}" method="post">
     @csrf
     @method('PUT')
-    <input type="text" name="name" value="{{ $product->name }}" placeholder="Name">
+    <input type="text" name="name" value="{{ $product->barcode }}" placeholder="barcode">
+    <input type="text" name="name" value="{{ $product->product_name }}" placeholder="Name">
     <input type="number" name="price" value="{{ $product->price }}" placeholder="Price">
     <input type="text" name="poster" value="{{ $product->stock }}" placeholder="Poster">
     <input type="submit" value="UPDATE">

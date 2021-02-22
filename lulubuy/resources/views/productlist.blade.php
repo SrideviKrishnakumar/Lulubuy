@@ -10,9 +10,12 @@
         <li>ProductName : {{ $item->product_name }}</li>
         <li>Price : {{ $item->price }}</li>
         <li>Stock : {{ $item->stock }}</li>
+        <a href="{{ route('product.edit', [$item->id]) }}">Edit page</a><br>
+        <a href="{{ route('product.delete', [$item->id]) }}">Delete page</a><br>
+        <hr>
         
     </ul>
-        
+      
     @endforeach
         
     @endif

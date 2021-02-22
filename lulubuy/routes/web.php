@@ -32,4 +32,4 @@ Route::get('/product/{id}/edit', [productController::class, 'edit'])->name('prod
 Route::put('/product/{id}', [productController::class, 'update'])->name('product.update');
 
 
-Route::delete('product/delete/{id}', [productController::class, 'destroy']);
+Route::delete('product/{id}/delete', [productController::class, 'destroy'])->name('product.delete');

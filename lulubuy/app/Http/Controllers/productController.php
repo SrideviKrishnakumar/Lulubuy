@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class productController extends Controller
 {
@@ -60,7 +61,7 @@ class productController extends Controller
     {
         $prod = Product::find($id);
 
-        return view('product.edit-product', ['product' => $prod]);
+        return view('edit-product', ['product' => $prod]);
     }
 
     /**
@@ -78,7 +79,16 @@ class productController extends Controller
             'price'=>'required',
             'stock'=>'requireds'
         ]);
-        $prod = new Product();
+
+        $result = DB::update('UPDATE products
+        SET barcode=?,product_name=?, price=?, stock=?
+        WHERE id=?',
+        [$request->barcode,$request->product_name, $request->price, $request->stock, $id] );
+
+        return redirect('productlist')->with('success', $request->product_name . ' Update successfully');
+
+        
+        /*$prod = new Product();
 
         $prod->barcode = $request->barcode;
         $prod->product_name = $request->product_name;
@@ -86,6 +96,7 @@ class productController extends Controller
         $prod->stock = $request->stock;
 
         $prod->save();
+        return view('productlist');*/
 
     }
 
@@ -99,5 +110,6 @@ class productController extends Controller
     {
         $prod = Product::find($id);
         $prod->delete();
+        return view('productlist');
     }
 }
